@@ -19,7 +19,7 @@ export function GameCard({ game }: GameCardProps) {
           alt={`${game.name} icon`}
           width={64}
           height={64}
-          className="flex-shrink-0 rounded-2xl border"
+          className="flex-shrink-0 rounded-xl border"
           data-ai-hint={game.iconHint}
         />
         <div className="min-w-0">

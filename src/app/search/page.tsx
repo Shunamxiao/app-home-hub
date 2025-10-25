@@ -16,9 +16,9 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <main className="container mx-auto px-4 py-8">
-      <header className="flex flex-col items-center justify-center text-center py-12">
+      <header className="flex flex-col items-center justify-center text-center py-8 md:py-12">
         <Link href="/" aria-label="Back to homepage">
-          <h1 className="font-headline text-7xl md:text-8xl tracking-wider text-primary drop-shadow-lg">
+          <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl tracking-wider text-primary drop-shadow-lg">
             GameVerse Hub
           </h1>
         </Link>
@@ -29,14 +29,14 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
 
       <section>
         {query && (
-          <h2 className="text-3xl font-bold mb-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
             Search results for: <span className="text-primary">"{query}"</span>
           </h2>
         )}
 
         {results.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
               {results.map((game) => (
                 <GameCard key={game.id} game={game} />
               ))}
