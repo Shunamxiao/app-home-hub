@@ -1,3 +1,124 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "pixel-raiders",
+      "description": "Pixel Raiders game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1759663174515-9057d83c8b8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwaXhlbCUyMGFydCUyMGFkdmVudHVyZXxlbnwwfHx8fDE3NjE0MDY0MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pixel art adventure"
+    },
+    {
+      "id": "cyber-sprint",
+      "description": "Cyber Sprint game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1626358171454-cca5c43927f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjeWJlcnB1bmslMjBydW5uZXJ8ZW58MHx8fHwxNzYxNDA2NDAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cyberpunk runner"
+    },
+    {
+      "id": "mystic-grove",
+      "description": "Mystic Grove game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1596237563267-84ffd99c80e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYW50YXN5JTIwZm9yZXN0fGVufDB8fHx8MTc2MTM2OTM1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy forest"
+    },
+    {
+      "id": "star-voyager",
+      "description": "Star Voyager game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1451187863213-d1bcbaae3fa3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzcGFjZSUyMHNoaXB8ZW58MHx8fHwxNzYxMzgxMDcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "space ship"
+    },
+    {
+      "id": "tiki-rush",
+      "description": "Tiki Rush game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1612528910408-9c35cf5a6244?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8anVuZ2xlJTIwaXNsYW5kfGVufDB8fHx8MTc2MTQwNjQwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "jungle island"
+    },
+    {
+      "id": "candy-cascade",
+      "description": "Candy Cascade game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1649432208894-5b710b6fa6c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjYW5keSUyMHB1enpsZXxlbnwwfHx8fDE3NjE0MDY0MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "candy puzzle"
+    },
+    {
+      "id": "dragon-watch",
+      "description": "Dragon Watch game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1572265333789-eeaff9d4a783?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmYW50YXN5JTIwZHJhZ29ufGVufDB8fHx8MTc2MTMyMTg3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy dragon"
+    },
+    {
+      "id": "nitro-racers",
+      "description": "Nitro Racers game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1629661414961-62b0d03007ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyYWNpbmclMjBjYXJ8ZW58MHx8fHwxNzYxMzIyMDM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "racing car"
+    },
+    {
+      "id": "quest-for-gems",
+      "description": "Quest for Gems game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1586738730873-bdd59a596a2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx0cmVhc3VyZSUyMGh1bnR8ZW58MHx8fHwxNzYxNDA2NDAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "treasure hunt"
+    },
+    {
+      "id": "arena-of-heroes",
+      "description": "Arena of Heroes game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1631290235496-b73219233bbf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmYW50YXN5JTIwYmF0dGxlfGVufDB8fHx8MTc2MTM4NDg4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy battle"
+    },
+    {
+      "id": "zombie-escape",
+      "description": "Zombie Escape game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1687021676562-c13ef9d7a07f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx6b21iaWUlMjBhcG9jYWx5cHNlfGVufDB8fHx8MTc2MTQwMzUyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "zombie apocalypse"
+    },
+    {
+      "id": "farm-frenzy",
+      "description": "Farm Frenzy game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1670967604168-d8057f2938ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxoYXBweSUyMGZhcm18ZW58MHx8fHwxNzYxNDA2NDAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy farm"
+    },
+    {
+      "id": "pirate-plunder",
+      "description": "Pirate Plunder game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1590880449155-b54f958ce314?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaXJhdGUlMjBzaGlwfGVufDB8fHx8MTc2MTI4OTg1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pirate ship"
+    },
+    {
+      "id": "galaxy-defenders",
+      "description": "Galaxy Defenders game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1760007417512-a70cb7b8aae5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzcGFjZSUyMGJhdHRsZXxlbnwwfHx8fDE3NjEzODE5MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "space battle"
+    },
+    {
+      "id": "wild-west-showdown",
+      "description": "Wild West Showdown game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1722311323062-acfd36d36a8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb3dib3klMjBkdWVsfGVufDB8fHx8MTc2MTM1MTc3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cowboy duel"
+    },
+    {
+      "id": "sushi-slice",
+      "description": "Sushi Slice game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1668887463754-8a5cd2df2014?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdXNoaSUyMGZvb2R8ZW58MHx8fHwxNzYxNDA2NDAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sushi food"
+    },
+    {
+      "id": "kingdom-builders",
+      "description": "Kingdom Builders game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1633551251216-865e971c4161?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWVkaWV2YWwlMjBjYXN0bGV8ZW58MHx8fHwxNzYxMzkxNTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medieval castle"
+    },
+    {
+      "id": "robot-rumble",
+      "description": "Robot Rumble game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1719837296146-bb32b03f442d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmaWdodGluZyUyMHJvYm90c3xlbnwwfHx8fDE3NjE0MDY0MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fighting robots"
+    },
+    {
+      "id": "ancient-runes",
+      "description": "Ancient Runes game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1668580976006-14856ea84c9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxteXN0aWNhbCUyMHJ1aW5zfGVufDB8fHx8MTc2MTQwNjQwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mystical ruins"
+    },
+    {
+      "id": "deep-sea-diver",
+      "description": "Deep Sea Diver game icon",
+      "imageUrl": "https://images.unsplash.com/photo-1559825481-12a05cc00344?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx1bmRlcndhdGVyJTIwb2NlYW58ZW58MHx8fHwxNzYxNDA2NDAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "underwater ocean"
+    }
+  ]
 }
