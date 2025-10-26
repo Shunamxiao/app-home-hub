@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Toaster } from "@/components/ui/toaster";
 import './globals.css';
+import { LayoutProvider } from '@/components/layout-provider';
 
 export const metadata: Metadata = {
   title: '游戏宇宙中心',
@@ -20,7 +21,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        {children}
+        <LayoutProvider>
+          {children}
+        </LayoutProvider>
         <Toaster />
       </body>
     </html>
