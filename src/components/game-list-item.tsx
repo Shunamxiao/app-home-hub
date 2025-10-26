@@ -33,18 +33,9 @@ export function GameListItem({ game, rank }: GameListItemProps) {
       />
       <div className="flex-grow min-w-0">
         <h3 className="text-lg font-bold truncate">{game.name}</h3>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-            <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400 shrink-0" />
-                <span>{game.rating.toFixed(1)}</span>
-            </div>
-            <p className="truncate">
-                <span className="mx-1.5">&middot;</span>
-                <span>{game.size}</span>
-                <span className="mx-1.5">&middot;</span>
-                <span>{game.downloads} Downloads</span>
-            </p>
-        </div>
+        <p className="text-sm text-muted-foreground mt-1 truncate">
+          {`Rated ${game.rating}/5 stars, ${game.downloads} downloads.`}
+        </p>
         <div className="flex flex-wrap gap-2 mt-2">
             {game.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
