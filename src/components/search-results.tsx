@@ -18,7 +18,8 @@ export function SearchResults({ query, results }: SearchResultsProps) {
 
   useEffect(() => {
     setLoading(false);
-  }, [setLoading]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, results]);
 
   return (
     <section>
