@@ -42,15 +42,15 @@ export function GameListItem({ game, rank }: GameListItemProps) {
   }
 
   return (
-    <Link href={`/game/${game.id}`} className="block rounded-lg hover:bg-muted/50 transition-colors duration-200">
-        <div className="flex items-center gap-4 p-4">
-        <div className={`text-xl font-bold w-8 text-center ${getRankColor()}`}>{rank}</div>
+    <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
+      <Link href={`/game/${game.id}`} className="flex items-center gap-4 flex-grow min-w-0">
+        <div className={`text-xl font-bold w-8 text-center shrink-0 ${getRankColor()}`}>{rank}</div>
         <Image
             src={game.iconUrl}
             alt={`${game.name} icon`}
             width={64}
             height={64}
-            className="rounded-xl"
+            className="rounded-xl shrink-0"
             data-ai-hint={game.iconHint}
         />
         <div className="flex-grow min-w-0">
@@ -69,13 +69,13 @@ export function GameListItem({ game, rank }: GameListItemProps) {
                 })}
             </div>
         </div>
-        <Button asChild className="font-bold shrink-0">
-            <Link href={game.downloadUrl} target="_blank" onClick={(e) => e.stopPropagation()}>
-                <Download className="mr-2 h-4 w-4" />
-                下载
-            </Link>
-        </Button>
-        </div>
-    </Link>
+      </Link>
+      <Button asChild className="font-bold shrink-0">
+          <a href={game.downloadUrl} target="_blank" onClick={(e) => e.stopPropagation()}>
+              <Download className="mr-2 h-4 w-4" />
+              下载
+          </a>
+      </Button>
+    </div>
   );
 }
