@@ -6,7 +6,7 @@ export default function Home() {
   const games = getGames();
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="container mx-auto px-2 sm:px-4 py-8">
       <header className="flex flex-col items-center justify-center text-center py-8 md:py-12">
         <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl tracking-wider text-primary drop-shadow-lg">
           GameVerse Hub

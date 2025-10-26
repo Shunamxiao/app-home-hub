@@ -22,13 +22,13 @@ export function GameListItem({ game, rank }: GameListItemProps) {
 
   return (
     <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
-      <div className={`text-2xl font-bold w-8 text-center ${getRankColor()}`}>{rank}</div>
+      <div className={`text-xl font-bold w-8 text-center ${getRankColor()}`}>{rank}</div>
       <Image
         src={game.iconUrl}
         alt={`${game.name} icon`}
-        width={80}
-        height={80}
-        className="rounded-2xl"
+        width={64}
+        height={64}
+        className="rounded-xl"
         data-ai-hint={game.iconHint}
       />
       <div className="flex-grow">
