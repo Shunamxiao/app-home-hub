@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
-import { AiSuggestions } from '@/components/ai-suggestions';
 import { AlertCircle, Gamepad2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import type { Game } from '@/lib/games';
@@ -59,7 +58,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </h1>
         </Link>
         <div className="mt-8 w-full max-w-2xl">
-          <SearchBar />
+          <Suspense fallback={<div></div>}>
+            <SearchBar />
+          </Suspense>
         </div>
       </header>
 

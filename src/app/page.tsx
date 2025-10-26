@@ -2,6 +2,7 @@
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
 import type { Game } from '@/lib/games';
+import { Suspense } from 'react';
 
 async function getGamesFromApi(): Promise<Game[]> {
   try {
@@ -48,7 +49,9 @@ export default async function Home() {
           您的快乐源泉！发现并下载最棒的手机游戏。
         </p>
         <div className="mt-8 w-full max-w-2xl">
-          <SearchBar />
+          <Suspense fallback={<div></div>}>
+            <SearchBar />
+          </Suspense>
         </div>
       </header>
       
