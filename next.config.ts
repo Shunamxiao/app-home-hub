@@ -1,3 +1,4 @@
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
@@ -20,6 +21,11 @@ const nextConfig: NextConfig = {
         hostname: '**',
       }
     ],
+  },
+  experimental: {
+    // This allows all cross-origin requests in development.
+    // Be sure to understand the security implications for your application.
+    allowedDevOrigins: ['**'],
   },
 };
 
