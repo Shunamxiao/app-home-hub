@@ -8,6 +8,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { ArrowLeft, Download, Info, Calendar, GitBranch, AlertCircle, Star, Users, Package, FileCode } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { DownloadButton } from '@/components/download-button';
+import { GameDescription } from '@/components/game-description';
 
 type GameDetails = {
     _id: string;
@@ -127,9 +128,14 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                 </div>
               </div>
             </div>
+             
+            <div className="mt-12">
+                <h2 className="text-2xl font-headline mb-4">About this game</h2>
+                <GameDescription description={cleanDescription} />
+            </div>
 
             {game.detail_images && game.detail_images.length > 0 && (
-              <div className="mt-12">
+              <div className="mt-8">
                 <h2 className="text-2xl font-headline mb-4">Gallery</h2>
                 <Carousel className="w-full">
                   <CarouselContent>
@@ -151,11 +157,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
               </div>
             )}
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <div>
-                    <h2 className="text-2xl font-headline mb-4">About this game</h2>
-                    <p className="whitespace-pre-line text-muted-foreground">{cleanDescription}</p>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mt-12">
                 <div>
                     <div className="sticky top-8">
                         <h2 className="text-2xl font-headline mb-4">Downloads</h2>
@@ -174,17 +176,16 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">Game Information</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-                    <InfoRow icon={Star} label="Rating" value={`${game.star}/5`} />
-                    <InfoRow icon={Users} label="Downloads" value={game.download_count_show || 'N/A'} />
-                    <InfoRow icon={Package} label="Content Rating" value={game.limit_age || 'Not rated'} />
-                    <InfoRow icon={Calendar} label="Released On" value={game.release_at ? new Date(game.release_at).toLocaleDateString() : 'N/A'} />
-                    <InfoRow icon={GitBranch} label="Last Updated" value={game.latest_at ? new Date(game.latest_at).toLocaleDateString() : 'N/A'} />
-                    <InfoRow icon={FileCode} label="Developer" value={game.developer || 'Unknown'} />
+                <div>
+                    <h2 className="text-2xl font-headline mb-4">Game Information</h2>
+                    <div className="grid grid-cols-1 gap-4">
+                        <InfoRow icon={Star} label="Rating" value={`${game.star}/5`} />
+                        <InfoRow icon={Users} label="Downloads" value={game.download_count_show || 'N/A'} />
+                        <InfoRow icon={Package} label="Content Rating" value={game.limit_age || 'Not rated'} />
+                        <InfoRow icon={Calendar} label="Released On" value={game.release_at ? new Date(game.release_at).toLocaleDateString() : 'N/A'} />
+                        <InfoRow icon={GitBranch} label="Last Updated" value={game.latest_at ? new Date(game.latest_at).toLocaleDateString() : 'N/A'} />
+                        <InfoRow icon={FileCode} label="Developer" value={game.developer || 'Unknown'} />
+                    </div>
                 </div>
             </div>
 
