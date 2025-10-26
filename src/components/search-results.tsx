@@ -2,7 +2,6 @@
 
 import { useContext, useEffect } from 'react';
 import { GameListItem } from '@/components/game-list-item';
-import { AiSuggestions } from '@/components/ai-suggestions';
 import { AlertCircle, Gamepad2, Mail } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import type { Game } from '@/lib/games';
@@ -39,9 +38,6 @@ export function SearchResults({ query, results }: SearchResultsProps) {
               ))}
             </div>
           </div>
-          <div className="mt-12">
-            <AiSuggestions searchTerm={query} initialResults={results.map(g => g.name)} />
-          </div>
         </>
       ) : (
         query && (
@@ -64,10 +60,6 @@ export function SearchResults({ query, results }: SearchResultsProps) {
                 <p className="text-sm text-muted-foreground">
                     如果缺少游戏急需，请发送邮件反馈，或者联系QQ：3788767702
                 </p>
-            </div>
-
-            <div className="mt-12">
-              <AiSuggestions searchTerm={query} initialResults={[]} />
             </div>
           </div>
         )
