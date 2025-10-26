@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
         hostname: 'hv.z.wiki',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.apks.cc',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
