@@ -127,6 +127,29 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                 </div>
               </div>
             </div>
+
+            {game.detail_images && game.detail_images.length > 0 && (
+              <div className="mt-12">
+                <h2 className="text-2xl font-headline mb-4">Gallery</h2>
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {game.detail_images.map((img, index) => (
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                        <div className="p-1">
+                          <Card className="overflow-hidden">
+                            <CardContent className="flex aspect-[16/9] items-center justify-center p-0">
+                                <Image src={img} alt={`Screenshot ${index + 1}`} width={1280} height={720} className="w-full h-full object-cover" />
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="ml-12" />
+                  <CarouselNext className="mr-12"/>
+                </Carousel>
+              </div>
+            )}
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                 <div>
@@ -152,29 +175,6 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                     </div>
                 </div>
             </div>
-
-            {game.detail_images && game.detail_images.length > 0 && (
-              <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">Gallery</h2>
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {game.detail_images.map((img, index) => (
-                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1">
-                          <Card className="overflow-hidden">
-                            <CardContent className="flex aspect-[16/9] items-center justify-center p-0">
-                                <Image src={img} alt={`Screenshot ${index + 1}`} width={1280} height={720} className="w-full h-full object-cover" />
-                            </CardContent>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="ml-12" />
-                  <CarouselNext className="mr-12"/>
-                </Carousel>
-              </div>
-            )}
             
             <div className="mt-12">
                 <h2 className="text-2xl font-headline mb-4">Game Information</h2>
