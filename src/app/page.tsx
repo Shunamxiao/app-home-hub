@@ -1,9 +1,37 @@
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
-import { getGames } from '@/lib/games';
+import type { Game } from '@/lib/games';
 
-export default function Home() {
-  const games = getGames();
+async function getGamesFromApi(): Promise<Game[]> {
+  try {
+    const response = await fetch('https://api.us.apks.cc/game/search', { next: { revalidate: 3600 } });
+    if (!response.ok) {
+      console.error('Failed to fetch games from API');
+      return [];
+    }
+    const data = await response.json();
+    
+    // Map the API response to our Game type
+    return data.list.map((item: any) => ({
+      id: item._id,
+      name: item.name,
+      iconUrl: item.icon,
+      iconHint: item.tags.slice(0, 2).join(' ') || 'game icon',
+      description: item.summary,
+      tags: item.tags,
+      downloadUrl: '#', // Placeholder
+      rating: 0, // Placeholder
+      size: 'N/A', // Placeholder
+      downloads: 'N/A' // Placeholder
+    }));
+  } catch (error) {
+    console.error('Error fetching games:', error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const games = await getGamesFromApi();
 
   return (
     <main className="container mx-auto px-2 sm:px-4 py-8">

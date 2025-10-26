@@ -5,14 +5,47 @@ import { searchGames } from '@/lib/games';
 import { AiSuggestions } from '@/components/ai-suggestions';
 import { AlertCircle, Gamepad2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import type { Game } from '@/lib/games';
+
+async function searchGamesFromApi(query: string): Promise<Game[]> {
+  if (!query) return [];
+  try {
+    // Note: The API is a search API, but we'll use it for demonstration.
+    // A more appropriate API endpoint would be one that takes a query parameter.
+    const response = await fetch(`https://api.us.apks.cc/game/search?keyword=${encodeURIComponent(query)}`, { next: { revalidate: 3600 } });
+    if (!response.ok) {
+      console.error('Failed to fetch games from API');
+      return [];
+    }
+    const data = await response.json();
+    
+    // Map the API response to our Game type
+    return data.list.map((item: any) => ({
+      id: item._id,
+      name: item.name,
+      iconUrl: item.icon,
+      iconHint: item.tags.slice(0, 2).join(' ') || 'game icon',
+      description: item.summary,
+      tags: item.tags,
+      downloadUrl: '#', // Placeholder
+      rating: 0, // Placeholder
+      size: 'N/A', // Placeholder
+      downloads: 'N/A' // Placeholder
+    }));
+  } catch (error) {
+    console.error('Error fetching games:', error);
+    return [];
+  }
+}
+
 
 type SearchPageProps = {
   searchParams: { q?: string };
 };
 
-export default function SearchPage({ searchParams }: SearchPageProps) {
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || '';
-  const results = searchGames(query);
+  const results = await searchGamesFromApi(query);
 
   return (
     <main className="container mx-auto px-2 sm:px-4 py-8">

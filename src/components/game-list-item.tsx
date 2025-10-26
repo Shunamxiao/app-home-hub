@@ -34,7 +34,7 @@ export function GameListItem({ game, rank }: GameListItemProps) {
       <div className="flex-grow min-w-0">
         <h3 className="text-lg font-bold truncate">{game.name}</h3>
         <p className="text-sm text-muted-foreground mt-1 truncate">
-          {`Rated ${game.rating}/5 stars, ${game.downloads} downloads.`}
+          {game.description}
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
             {game.tags.map((tag) => (
