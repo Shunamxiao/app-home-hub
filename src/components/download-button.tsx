@@ -55,7 +55,7 @@ export function DownloadButton({ resource }: DownloadButtonProps) {
         return (
             <AlertDialog>
                 <AlertDialogTrigger asChild>
-                    <Button size="lg" className="w-full justify-start">
+                    <Button size="lg" className="justify-start">
                         <Download className="h-5 w-5 mr-3"/>
                         <div className="text-left">
                             <div className="font-bold">{resource.channel.name}</div>
@@ -80,7 +80,7 @@ export function DownloadButton({ resource }: DownloadButtonProps) {
     }
 
     return (
-        <Button asChild size="lg" className="w-full justify-start">
+        <Button asChild size="lg" className="justify-start">
             <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5 mr-3"/>
                 <div className="text-left">
