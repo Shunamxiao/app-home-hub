@@ -43,6 +43,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: '0.z.wiki',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn.apks.cc',
         port: '',
         pathname: '/**',
