@@ -33,6 +33,8 @@ type GameDetails = {
         channel: {
             name: string;
             icon: string;
+            type: string;
+            url_prefix: string | null;
         };
     }[];
 };
@@ -42,12 +44,10 @@ async function getGameDetails(id: string): Promise<GameDetails | null> {
     const response = await fetch(`https://api.us.apks.cc/game/info?id=${id}`, { next: { revalidate: 3600 } });
     const result = await response.json();
     
-    // The actual data and code/message are nested inside a 'data' object on success
     if (response.ok && result.data && result.data.code === 200) {
       return result.data;
     }
 
-    // Handle API-level errors (e.g., code != 200) which might be in the top-level or nested
     const errorMessage = result.data?.message || result.message || 'Unknown API error';
     console.error(`API error for game details id: ${id}`, errorMessage);
     return null;
@@ -140,9 +140,13 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                     <div className="sticky top-8">
                         <h2 className="text-2xl font-headline mb-4">Downloads</h2>
                         <div className="flex flex-col gap-3">
-                            {game.resource && game.resource.length > 0 ? game.resource.map(res => (
+                            {game.resource && game.resource.length > 0 ? game.resource.map(res => {
+                                const downloadUrl = res.channel.type === 'third_party' && res.channel.url_prefix 
+                                    ? `${res.channel.url_prefix}${res.url}`
+                                    : res.url;
+                                return (
                                 <Button asChild key={res._id} size="lg" className="w-full justify-start">
-                                    <a href={res.url} target="_blank" rel="noopener noreferrer">
+                                    <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
                                         <Download className="h-5 w-5 mr-3"/>
                                         <div className="text-left">
                                             <div className="font-bold">{res.channel.name}</div>
@@ -150,7 +154,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                                         </div>
                                     </a>
                                 </Button>
-                            )) : (
+                            );}) : (
                                 <Alert variant="destructive">
                                     <AlertCircle className="h-4 w-4" />
                                     <AlertTitle>No Download Links</AlertTitle>
