@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Game } from '@/lib/games';
@@ -20,12 +22,12 @@ const getColorIndexFromString = (str: string) => {
 };
 
 const badgeColors = [
-    'bg-sky-100 text-sky-800 border-sky-300',
-    'bg-amber-100 text-amber-800 border-amber-300',
-    'bg-emerald-100 text-emerald-800 border-emerald-300',
-    'bg-violet-100 text-violet-800 border-violet-300',
-    'bg-pink-100 text-pink-800 border-pink-300',
-    'bg-rose-100 text-rose-800 border-rose-300',
+    'bg-sky-100 text-sky-800 border-sky-300 hover:bg-sky-200',
+    'bg-amber-100 text-amber-800 border-amber-300 hover:bg-amber-200',
+    'bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-200',
+    'bg-violet-100 text-violet-800 border-violet-300 hover:bg-violet-200',
+    'bg-pink-100 text-pink-800 border-pink-300 hover:bg-pink-200',
+    'bg-rose-100 text-rose-800 border-rose-300 hover:bg-rose-200',
 ];
 
 
@@ -40,38 +42,40 @@ export function GameListItem({ game, rank }: GameListItemProps) {
   }
 
   return (
-    <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
-      <div className={`text-xl font-bold w-8 text-center ${getRankColor()}`}>{rank}</div>
-      <Image
-        src={game.iconUrl}
-        alt={`${game.name} icon`}
-        width={64}
-        height={64}
-        className="rounded-xl"
-        data-ai-hint={game.iconHint}
-      />
-      <div className="flex-grow min-w-0">
-        <h3 className="text-lg font-bold truncate">{game.name}</h3>
-        <p className="text-sm text-muted-foreground mt-1 truncate">
-          {game.description}
-        </p>
-        <div className="flex flex-wrap gap-2 mt-2">
-            {game.tags.slice(0, 2).map((tag, index) => {
-              const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
-              return (
-                <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]}`}>
-                  {tag}
-                </Badge>
-              );
-            })}
+    <Link href={`/game/${game.id}`} className="block rounded-lg hover:bg-muted/50 transition-colors duration-200">
+        <div className="flex items-center gap-4 p-4">
+        <div className={`text-xl font-bold w-8 text-center ${getRankColor()}`}>{rank}</div>
+        <Image
+            src={game.iconUrl}
+            alt={`${game.name} icon`}
+            width={64}
+            height={64}
+            className="rounded-xl"
+            data-ai-hint={game.iconHint}
+        />
+        <div className="flex-grow min-w-0">
+            <h3 className="text-lg font-bold truncate sm:w-auto w-40">{game.name}</h3>
+            <p className="text-sm text-muted-foreground mt-1 truncate">
+                {game.description}
+            </p>
+            <div className="flex flex-wrap gap-2 mt-2">
+                {game.tags.slice(0, 2).map((tag) => {
+                const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
+                return (
+                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]}`}>
+                    {tag}
+                    </Badge>
+                );
+                })}
+            </div>
         </div>
-      </div>
-      <Button asChild className="font-bold shrink-0">
-        <Link href={game.downloadUrl}>
-          <Download className="mr-2 h-4 w-4" />
-          下载
-        </Link>
-      </Button>
-    </div>
+        <Button asChild className="font-bold shrink-0">
+            <Link href={game.downloadUrl} target="_blank" onClick={(e) => e.stopPropagation()}>
+                <Download className="mr-2 h-4 w-4" />
+                下载
+            </Link>
+        </Button>
+        </div>
+    </Link>
   );
 }
