@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
         hostname: 'cdn.apks.cc',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.51shazhu.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
