@@ -50,6 +50,11 @@ async function getGameDetails(id: string): Promise<GameDetails | null> {
 
     const errorMessage = result.data?.message || result.message || 'Unknown API error';
     console.error(`API error for game details id: ${id}`, errorMessage);
+    // If the game info is mostly there but resources are missing, we might still want to show the page.
+    // The check for `result.data.name` is a heuristic to see if we got partial data.
+    if(result.data && result.data.name) {
+      return result.data;
+    }
     return null;
 
   } catch (error) {
