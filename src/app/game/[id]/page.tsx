@@ -37,19 +37,21 @@ type GameDetails = {
     }[];
 };
 
-async function getGameDetails(id: string): Promise<{data: GameDetails} | null> {
+async function getGameDetails(id: string): Promise<GameDetails | null> {
   try {
     const response = await fetch(`https://api.us.apks.cc/game/info?id=${id}`, { next: { revalidate: 3600 } });
+    const result = await response.json();
+    
     if (!response.ok) {
-      console.error(`Failed to fetch game details for id: ${id}, Status: ${response.status}`);
+      console.error(`Failed to fetch game details for id: ${id}, Status: ${response.status}`, result.message || 'Unknown API error');
       return null;
     }
-    const result = await response.json();
+    
     if (result.code !== 200 || !result.data) {
         console.error(`API error for game details id: ${id}`, result.message);
         return null;
     }
-    return result;
+    return result.data;
   } catch (error) {
     console.error(`Error fetching game details for id: ${id}:`, error);
     return null;
@@ -77,13 +79,11 @@ const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label:
 
 
 export default async function GameDetailPage({ params }: { params: { id: string } }) {
-  const result = await getGameDetails(params.id);
+  const game = await getGameDetails(params.id);
 
-  if (!result || !result.data) {
+  if (!game) {
     notFound();
   }
-
-  const game = result.data;
 
   // Sanitize description
   const cleanDescription = game.description.replace(/<br>/g, '\n').replace(/<br \/>/g, '\n');
