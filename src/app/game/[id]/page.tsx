@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ArrowLeft, Download, Info, Calendar, GitBranch, AlertCircle, Star, Users, Package, FileCode } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { DownloadButton } from '@/components/download-button';
 
 type GameDetails = {
     _id: string;
@@ -62,15 +63,6 @@ async function getGameDetails(id: string): Promise<GameDetails | null> {
     return null;
   }
 }
-
-const formatBytes = (bytes: number | null, decimals = 2) => {
-    if (bytes === null || bytes === 0) return 'N/A';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-};
 
 const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: React.ReactNode }) => (
     <div className="flex items-start gap-3 text-sm">
@@ -145,21 +137,9 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                     <div className="sticky top-8">
                         <h2 className="text-2xl font-headline mb-4">Downloads</h2>
                         <div className="flex flex-col gap-3">
-                            {game.resource && game.resource.length > 0 ? game.resource.map(res => {
-                                const downloadUrl = res.channel.type === 'third_party' && res.channel.url_prefix 
-                                    ? `${res.channel.url_prefix}${res.url}`
-                                    : res.url;
-                                return (
-                                <Button asChild key={res._id} size="lg" className="w-full justify-start">
-                                    <a href={downloadUrl} target="_blank" rel="noopener noreferrer">
-                                        <Download className="h-5 w-5 mr-3"/>
-                                        <div className="text-left">
-                                            <div className="font-bold">{res.channel.name}</div>
-                                            <div className="text-xs opacity-80">v{res.version} • {formatBytes(res.size)}</div>
-                                        </div>
-                                    </a>
-                                </Button>
-                            );}) : (
+                            {game.resource && game.resource.length > 0 ? game.resource.map(res => (
+                                <DownloadButton key={res._id} resource={res} />
+                            )) : (
                                 <Alert variant="destructive">
                                     <AlertCircle className="h-4 w-4" />
                                     <AlertTitle>No Download Links</AlertTitle>
