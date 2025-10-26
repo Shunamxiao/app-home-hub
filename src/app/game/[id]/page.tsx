@@ -131,7 +131,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
             </div>
             
             <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4 text-center">游戏信息</h2>
+                <h2 className="text-2xl font-headline mb-4">游戏信息</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                     <InfoCard icon={Star} label="评分" value={`${game.star}/5`} />
                     <InfoCard icon={Users} label="下载量" value={game.download_count_show || 'N/A'} />
