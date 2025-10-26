@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { ArrowLeft, Download, Info, Calendar, GitBranch, AlertCircle, Star, Users, Package, FileCode } from 'lucide-react';
+import { ArrowLeft, Download, Info, Calendar, GitBranch, AlertCircle, Star, Users, Package, FileCode, Mail } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { DownloadButton } from '@/components/download-button';
 import { GameDescription } from '@/components/game-description';
@@ -171,13 +171,12 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                     {game.resource && game.resource.length > 0 ? game.resource.map(res => (
                         <DownloadButton key={res._id} resource={res} />
                     )) : (
-                        <Alert variant="destructive">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>无下载链接</AlertTitle>
-                            <AlertDescription>
-                                抱歉，该游戏暂时没有可用的下载链接。
-                            </AlertDescription>
-                        </Alert>
+                        <Button variant="outline" asChild>
+                            <a href={`mailto:apkscc-feedback@foxmail.com?subject=Feedback for ${game.name} (ID: ${game._id})`}>
+                                <Mail className="mr-2 h-4 w-4" />
+                                反馈链接问题
+                            </a>
+                        </Button>
                     )}
                 </div>
             </div>
