@@ -6,10 +6,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { ArrowLeft, Download, Info, Calendar, GitBranch, AlertCircle, Star, Users, Package, FileCode, Mail } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { ArrowLeft, Mail, Star, Users, Package, Calendar, GitBranch, FileCode } from 'lucide-react';
 import { DownloadButton } from '@/components/download-button';
 import { GameDescription } from '@/components/game-description';
+import { FeedbackDialog } from '@/components/feedback-dialog';
 
 type GameDetails = {
     _id: string;
@@ -166,19 +166,22 @@ export default async function GameDetailPage({ params }: { params: { id: string 
             )}
 
             <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">下载</h2>
-                <div className="flex flex-wrap gap-3 justify-end">
-                    {game.resource && game.resource.length > 0 ? game.resource.map(res => (
-                        <DownloadButton key={res._id} resource={res} />
-                    )) : (
-                        <Button variant="outline" asChild>
-                            <a href={`mailto:apkscc-feedback@foxmail.com?subject=Feedback for ${game.name} (ID: ${game._id})`}>
-                                <Mail className="mr-2 h-4 w-4" />
-                                反馈链接问题
-                            </a>
-                        </Button>
-                    )}
-                </div>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-headline">下载</h2>
+                <FeedbackDialog gameName={game.name} />
+              </div>
+              <div className="flex flex-wrap gap-3 justify-end">
+                  {game.resource && game.resource.length > 0 ? game.resource.map(res => (
+                      <DownloadButton key={res._id} resource={res} />
+                  )) : (
+                      <Button variant="outline" asChild>
+                          <a href={`mailto:apkscc-feedback@foxmail.com?subject=Feedback for ${game.name} (ID: ${game._id})`}>
+                              <Mail className="mr-2 h-4 w-4" />
+                              反馈链接问题
+                          </a>
+                      </Button>
+                  )}
+              </div>
             </div>
             
             <div className="mt-12">
