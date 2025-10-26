@@ -3,10 +3,11 @@
 import { useContext, useEffect } from 'react';
 import { GameListItem } from '@/components/game-list-item';
 import { AiSuggestions } from '@/components/ai-suggestions';
-import { AlertCircle, Gamepad2 } from 'lucide-react';
+import { AlertCircle, Gamepad2, Mail } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import type { Game } from '@/lib/games';
 import { LoadingContext } from './layout-provider';
+import { Button } from './ui/button';
 
 type SearchResultsProps = {
   query: string;
@@ -49,9 +50,21 @@ export function SearchResults({ query, results }: SearchResultsProps) {
               <AlertCircle className="h-4 w-4" />
               <AlertTitle className='font-headline text-2xl'>未找到游戏!</AlertTitle>
               <AlertDescription className='text-base'>
-                我们找不到与您的搜索匹配的任何游戏。试试下面的建议之一。
+                我们找不到与您的搜索匹配的任何游戏。您可以向我们反馈。
               </AlertDescription>
             </Alert>
+            
+            <div className="mt-6 flex flex-col items-center gap-4">
+                <Button asChild>
+                    <a href="mailto:apkscc-feedback@foxmail.com?subject=Feedback for missing game">
+                        <Mail className="mr-2 h-4 w-4" />
+                        反馈缺失游戏
+                    </a>
+                </Button>
+                <p className="text-sm text-muted-foreground">
+                    如果缺少游戏急需，请发送邮件反馈，或者联系QQ：3788767702
+                </p>
+            </div>
 
             <div className="mt-12">
               <AiSuggestions searchTerm={query} initialResults={[]} />
