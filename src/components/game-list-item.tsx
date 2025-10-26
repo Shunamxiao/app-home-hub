@@ -14,8 +14,8 @@ export function GameListItem({ game, rank }: GameListItemProps) {
   const getRankColor = () => {
     switch(rank) {
       case 1: return 'text-yellow-400';
-      case 2: return 'text-slate-400';
-      case 3: return 'text-orange-400';
+      case 2: return 'text-gray-400';
+      case 3: return 'text-orange-500';
       default: return 'text-muted-foreground';
     }
   }
@@ -31,15 +31,19 @@ export function GameListItem({ game, rank }: GameListItemProps) {
         className="rounded-xl"
         data-ai-hint={game.iconHint}
       />
-      <div className="flex-grow">
+      <div className="flex-grow min-w-0">
         <h3 className="text-lg font-bold truncate">{game.name}</h3>
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mt-1">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
             <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400 shrink-0" />
                 <span>{game.rating.toFixed(1)}</span>
             </div>
-            <span>{game.size}</span>
-            <span>{game.downloads}</span>
+            <p className="truncate">
+                <span className="mx-1.5">&middot;</span>
+                <span>{game.size}</span>
+                <span className="mx-1.5">&middot;</span>
+                <span>{game.downloads} Downloads</span>
+            </p>
         </div>
         <div className="flex flex-wrap gap-2 mt-2">
             {game.tags.map((tag) => (
