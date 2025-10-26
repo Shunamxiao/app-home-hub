@@ -2,13 +2,32 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Game } from '@/lib/games';
 import { Button } from '@/components/ui/button';
-import { Download, Star } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 type GameListItemProps = {
   game: Game;
   rank: number;
 };
+
+// A simple hash function to get a color index from a string
+const getColorIndexFromString = (str: string) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(hash);
+};
+
+const badgeColors = [
+    'bg-sky-100 text-sky-800 border-sky-300',
+    'bg-amber-100 text-amber-800 border-amber-300',
+    'bg-emerald-100 text-emerald-800 border-emerald-300',
+    'bg-violet-100 text-violet-800 border-violet-300',
+    'bg-pink-100 text-pink-800 border-pink-300',
+    'bg-rose-100 text-rose-800 border-rose-300',
+];
+
 
 export function GameListItem({ game, rank }: GameListItemProps) {
   const getRankColor = () => {
@@ -37,9 +56,14 @@ export function GameListItem({ game, rank }: GameListItemProps) {
           {game.description}
         </p>
         <div className="flex flex-wrap gap-2 mt-2">
-            {game.tags.map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
-            ))}
+            {game.tags.slice(0, 2).map((tag, index) => {
+              const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
+              return (
+                <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]}`}>
+                  {tag}
+                </Badge>
+              );
+            })}
         </div>
       </div>
       <Button asChild className="font-bold shrink-0">
