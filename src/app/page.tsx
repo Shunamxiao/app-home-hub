@@ -1,3 +1,4 @@
+
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
 import type { Game } from '@/lib/games';
@@ -11,6 +12,10 @@ async function getGamesFromApi(): Promise<Game[]> {
     }
     const data = await response.json();
     
+    if (!data.list) {
+      return [];
+    }
+
     // Map the API response to our Game type
     return data.list.map((item: any) => ({
       id: item._id,

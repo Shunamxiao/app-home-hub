@@ -1,7 +1,7 @@
+
 import Link from 'next/link';
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
-import { searchGames } from '@/lib/games';
 import { AiSuggestions } from '@/components/ai-suggestions';
 import { AlertCircle, Gamepad2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -10,15 +10,17 @@ import type { Game } from '@/lib/games';
 async function searchGamesFromApi(query: string): Promise<Game[]> {
   if (!query) return [];
   try {
-    // Note: The API is a search API, but we'll use it for demonstration.
-    // A more appropriate API endpoint would be one that takes a query parameter.
-    const response = await fetch(`https://api.us.apks.cc/game/search?keyword=${encodeURIComponent(query)}`, { next: { revalidate: 3600 } });
+    const response = await fetch(`https://api.us.apks.cc/game/search?q=${encodeURIComponent(query)}`, { next: { revalidate: 3600 } });
     if (!response.ok) {
       console.error('Failed to fetch games from API');
       return [];
     }
     const data = await response.json();
     
+    if (!data.list) {
+      return [];
+    }
+
     // Map the API response to our Game type
     return data.list.map((item: any) => ({
       id: item._id,
