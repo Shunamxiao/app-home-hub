@@ -93,7 +93,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
             <Button asChild variant="outline">
                 <Link href="/" className="flex items-center gap-2">
                     <ArrowLeft className="h-4 w-4" />
-                    Back to List
+                    返回列表
                 </Link>
             </Button>
         </div>
@@ -162,7 +162,7 @@ export default async function GameDetailPage({ params }: { params: { id: string 
             </div>
 
             {game.detail_images && game.detail_images.length > 0 && (
-              <div className="mt-8">
+              <div className="mt-12">
                 <h2 className="text-2xl font-headline mb-4">Gallery</h2>
                 <Carousel className="w-full">
                   <CarouselContent>
