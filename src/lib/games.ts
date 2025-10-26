@@ -8,6 +8,9 @@ export type Game = {
   description: string;
   tags: string[];
   downloadUrl: string;
+  rating: number;
+  size: string;
+  downloads: string;
 };
 
 const getImage = (id: string): { url: string; hint: string } => {
@@ -32,7 +35,10 @@ export const games: Game[] = [
     iconHint: getImage('pixel-raiders').hint,
     description: 'Embark on an epic quest in a retro-style world!',
     tags: ['RPG', 'Adventure', 'Pixel Art'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.5,
+    size: '128MB',
+    downloads: '1M+'
   },
   {
     id: '2',
@@ -41,7 +47,10 @@ export const games: Game[] = [
     iconHint: getImage('cyber-sprint').hint,
     description: 'Race through a neon-lit city of the future.',
     tags: ['Runner', 'Sci-Fi', 'Action'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.7,
+    size: '256MB',
+    downloads: '5M+'
   },
   {
     id: '3',
@@ -50,7 +59,10 @@ export const games: Game[] = [
     iconHint: getImage('mystic-grove').hint,
     description: 'Solve puzzles in an enchanted, magical forest.',
     tags: ['Puzzle', 'Fantasy', 'Casual'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.6,
+    size: '98MB',
+    downloads: '2M+'
   },
   {
     id: '4',
@@ -59,7 +71,10 @@ export const games: Game[] = [
     iconHint: getImage('star-voyager').hint,
     description: 'Explore unknown galaxies and trade with aliens.',
     tags: ['Strategy', 'Sci-Fi', 'Space'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.8,
+    size: '312MB',
+    downloads: '10M+'
   },
   {
     id: '5',
@@ -68,7 +83,10 @@ export const games: Game[] = [
     iconHint: getImage('tiki-rush').hint,
     description: 'Dash through tropical jungles to escape a volcano.',
     tags: ['Action', 'Endless Runner', 'Adventure'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.4,
+    size: '155MB',
+    downloads: '3M+'
   },
   {
     id: '6',
@@ -77,7 +95,10 @@ export const games: Game[] = [
     iconHint: getImage('candy-cascade').hint,
     description: 'Match colorful candies in this sweet puzzle game.',
     tags: ['Puzzle', 'Match-3', 'Casual'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.9,
+    size: '80MB',
+    downloads: '20M+'
   },
   {
     id: '7',
@@ -86,7 +107,10 @@ export const games: Game[] = [
     iconHint: getImage('dragon-watch').hint,
     description: 'Raise and train powerful dragons for battle.',
     tags: ['RPG', 'Fantasy', 'Simulation'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.7,
+    size: '450MB',
+    downloads: '8M+'
   },
   {
     id: '8',
@@ -95,7 +119,10 @@ export const games: Game[] = [
     iconHint: getImage('nitro-racers').hint,
     description: 'High-speed street racing with customizable cars.',
     tags: ['Racing', 'Action', 'Sports'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.6,
+    size: '500MB',
+    downloads: '12M+'
   },
   {
     id: '9',
@@ -104,7 +131,10 @@ export const games: Game[] = [
     iconHint: getImage('quest-for-gems').hint,
     description: 'A classic platformer adventure to find lost jewels.',
     tags: ['Platformer', 'Adventure', 'Family'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.3,
+    size: '110MB',
+    downloads: '1.5M+'
   },
   {
     id: '10',
@@ -113,7 +143,10 @@ export const games: Game[] = [
     iconHint: getImage('arena-of-heroes').hint,
     description: 'Compete in 5v5 battles in a fantasy arena.',
     tags: ['MOBA', 'Strategy', 'Multiplayer'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.8,
+    size: '1.2GB',
+    downloads: '30M+'
   },
   {
     id: '11',
@@ -122,7 +155,10 @@ export const games: Game[] = [
     iconHint: getImage('zombie-escape').hint,
     description: 'Survive the horde and find a cure.',
     tags: ['Survival', 'Horror', 'Action'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.2,
+    size: '300MB',
+    downloads: '7M+'
   },
   {
     id: '12',
@@ -131,7 +167,10 @@ export const games: Game[] = [
     iconHint: getImage('farm-frenzy').hint,
     description: 'Build your dream farm and grow your crops.',
     tags: ['Simulation', 'Casual', 'Family'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.5,
+    size: '150MB',
+    downloads: '15M+'
   },
   {
     id: '13',
@@ -140,7 +179,10 @@ export const games: Game[] = [
     iconHint: getImage('pirate-plunder').hint,
     description: 'Sail the seven seas in search of treasure.',
     tags: ['Adventure', 'Strategy', 'Pirates'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.6,
+    size: '280MB',
+    downloads: '6M+'
   },
   {
     id: '14',
@@ -149,7 +191,10 @@ export const games: Game[] = [
     iconHint: getImage('galaxy-defenders').hint,
     description: 'Protect the cosmos from alien invaders.',
     tags: ['Shooter', 'Sci-Fi', 'Arcade'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.7,
+    size: '180MB',
+    downloads: '9M+'
   },
   {
     id: '15',
@@ -158,7 +203,10 @@ export const games: Game[] = [
     iconHint: getImage('wild-west-showdown').hint,
     description: 'Become the most famous gunslinger in the west.',
     tags: ['Action', 'Shooter', 'Western'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.4,
+    size: '320MB',
+    downloads: '4M+'
   },
   {
     id: '16',
@@ -167,7 +215,10 @@ export const games: Game[] = [
     iconHint: getImage('sushi-slice').hint,
     description: 'Slice and dice ingredients to make delicious sushi.',
     tags: ['Arcade', 'Casual', 'Cooking'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.5,
+    size: '95MB',
+    downloads: '5.5M+'
   },
   {
     id: '17',
@@ -176,7 +227,10 @@ export const games: Game[] = [
     iconHint: getImage('kingdom-builders').hint,
     description: 'Construct a mighty kingdom from the ground up.',
     tags: ['Strategy', 'Simulation', 'City-Builder'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.8,
+    size: '600MB',
+    downloads: '11M+'
   },
   {
     id: '18',
@@ -185,7 +239,10 @@ export const games: Game[] = [
     iconHint: getImage('robot-rumble').hint,
     description: 'Build your own robot and fight in the arena.',
     tags: ['Fighting', 'Sci-Fi', 'Action'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.3,
+    size: '400MB',
+    downloads: '3.5M+'
   },
   {
     id: '19',
@@ -194,7 +251,10 @@ export const games: Game[] = [
     iconHint: getImage('ancient-runes').hint,
     description: 'Uncover the secrets of a lost civilization.',
     tags: ['Puzzle', 'Adventure', 'Mystery'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.6,
+    size: '140MB',
+    downloads: '2.5M+'
   },
   {
     id: '20',
@@ -203,7 +263,10 @@ export const games: Game[] = [
     iconHint: getImage('deep-sea-diver').hint,
     description: 'Explore the ocean depths and discover new species.',
     tags: ['Simulation', 'Exploration', 'Education'],
-    downloadUrl: '#'
+    downloadUrl: '#',
+    rating: 4.5,
+    size: '210MB',
+    downloads: '1.8M+'
   }
 ];
 

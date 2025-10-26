@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { GameCard } from '@/components/game-card';
+import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
 import { searchGames } from '@/lib/games';
 import { AiSuggestions } from '@/components/ai-suggestions';
@@ -36,10 +36,12 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
 
         {results.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-              {results.map((game) => (
-                <GameCard key={game.id} game={game} />
-              ))}
+            <div className="max-w-4xl mx-auto">
+              <div className="flex flex-col gap-4">
+                {results.map((game, index) => (
+                  <GameListItem key={game.id} game={game} rank={index + 1} />
+                ))}
+              </div>
             </div>
             <div className="mt-12">
               <AiSuggestions searchTerm={query} initialResults={results.map(g => g.name)} />

@@ -1,4 +1,4 @@
-import { GameCard } from '@/components/game-card';
+import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
 import { getGames } from '@/lib/games';
 
@@ -21,10 +21,12 @@ export default function Home() {
       
       <section className="py-8 md:py-12">
         <h2 className="font-headline text-4xl sm:text-5xl mb-8 tracking-wide text-center">Trending Games</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-          {games.map((game) => (
-            <GameCard key={game.id} game={game} />
-          ))}
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col gap-4">
+            {games.map((game, index) => (
+              <GameListItem key={game.id} game={game} rank={index + 1} />
+            ))}
+          </div>
         </div>
       </section>
     </main>
