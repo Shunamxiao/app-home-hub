@@ -2,6 +2,7 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  devTools: false,
   typescript: {
     ignoreBuildErrors: true,
   },
