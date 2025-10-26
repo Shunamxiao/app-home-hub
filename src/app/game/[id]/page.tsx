@@ -66,14 +66,14 @@ async function getGameDetails(id: string): Promise<GameDetails | null> {
   }
 }
 
-const InfoRow = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: React.ReactNode }) => (
-    <div className="flex items-start gap-3 text-sm">
-        <Icon className="h-4 w-4 mt-0.5 text-muted-foreground" />
-        <div className="flex-1">
-            <span className="font-semibold">{label}:</span>
-            <span className="ml-2 text-muted-foreground">{value}</span>
-        </div>
-    </div>
+const InfoCard = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: React.ReactNode }) => (
+    <Card>
+        <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
+            <Icon className="h-8 w-8 text-primary" />
+            <p className="text-sm font-semibold text-muted-foreground">{label}</p>
+            <p className="text-lg font-bold">{value}</p>
+        </CardContent>
+    </Card>
 );
 
 
@@ -130,35 +130,32 @@ export default async function GameDetailPage({ params }: { params: { id: string 
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mt-12">
-                <div>
-                    <div className="sticky top-8">
-                        <h2 className="text-2xl font-headline mb-4">下载</h2>
-                        <div className="flex flex-col gap-3">
-                            {game.resource && game.resource.length > 0 ? game.resource.map(res => (
-                                <DownloadButton key={res._id} resource={res} />
-                            )) : (
-                                <Alert variant="destructive">
-                                    <AlertCircle className="h-4 w-4" />
-                                    <AlertTitle>无下载链接</AlertTitle>
-                                    <AlertDescription>
-                                        抱歉，该游戏暂时没有可用的下载链接。
-                                    </AlertDescription>
-                                </Alert>
-                            )}
-                        </div>
-                    </div>
+            <div className="mt-12">
+                <h2 className="text-2xl font-headline mb-4">下载</h2>
+                <div className="flex flex-col gap-3 max-w-sm mx-auto">
+                    {game.resource && game.resource.length > 0 ? game.resource.map(res => (
+                        <DownloadButton key={res._id} resource={res} />
+                    )) : (
+                        <Alert variant="destructive">
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertTitle>无下载链接</AlertTitle>
+                            <AlertDescription>
+                                抱歉，该游戏暂时没有可用的下载链接。
+                            </AlertDescription>
+                        </Alert>
+                    )}
                 </div>
-                <div>
-                    <h2 className="text-2xl font-headline mb-4">游戏信息</h2>
-                    <div className="grid grid-cols-1 gap-4">
-                        <InfoRow icon={Star} label="评分" value={`${game.star}/5`} />
-                        <InfoRow icon={Users} label="下载量" value={game.download_count_show || 'N/A'} />
-                        <InfoRow icon={Package} label="内容分级" value={game.limit_age || '未分级'} />
-                        <InfoRow icon={Calendar} label="发布日期" value={game.release_at ? new Date(game.release_at).toLocaleDateString() : 'N/A'} />
-                        <InfoRow icon={GitBranch} label="最后更新" value={game.latest_at ? new Date(game.latest_at).toLocaleDateString() : 'N/A'} />
-                        <InfoRow icon={FileCode} label="开发者" value={game.developer || '未知'} />
-                    </div>
+            </div>
+            
+            <div className="mt-12">
+                <h2 className="text-2xl font-headline mb-4 text-center">游戏信息</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <InfoCard icon={Star} label="评分" value={`${game.star}/5`} />
+                    <InfoCard icon={Users} label="下载量" value={game.download_count_show || 'N/A'} />
+                    <InfoCard icon={Package} label="内容分级" value={game.limit_age || '未分级'} />
+                    <InfoCard icon={Calendar} label="发布日期" value={game.release_at ? new Date(game.release_at).toLocaleDateString() : 'N/A'} />
+                    <InfoCard icon={GitBranch} label="最后更新" value={game.latest_at ? new Date(game.latest_at).toLocaleDateString() : 'N/A'} />
+                    <InfoCard icon={FileCode} label="开发者" value={game.developer || '未知'} />
                 </div>
             </div>
 
@@ -206,5 +203,3 @@ export default async function GameDetailPage({ params }: { params: { id: string 
     </main>
   );
 }
-
-    
