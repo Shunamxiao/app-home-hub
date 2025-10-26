@@ -42,16 +42,16 @@ async function getGameDetails(id: string): Promise<GameDetails | null> {
     const response = await fetch(`https://api.us.apks.cc/game/info?id=${id}`, { next: { revalidate: 3600 } });
     const result = await response.json();
     
-    if (!response.ok) {
-      console.error(`Failed to fetch game details for id: ${id}, Status: ${response.status}`, result.message || 'Unknown API error');
-      return null;
+    // The actual data and code/message are nested inside a 'data' object on success
+    if (response.ok && result.data && result.data.code === 200) {
+      return result.data;
     }
-    
-    if (result.code !== 200 || !result.data) {
-        console.error(`API error for game details id: ${id}`, result.message);
-        return null;
-    }
-    return result.data;
+
+    // Handle API-level errors (e.g., code != 200) which might be in the top-level or nested
+    const errorMessage = result.data?.message || result.message || 'Unknown API error';
+    console.error(`API error for game details id: ${id}`, errorMessage);
+    return null;
+
   } catch (error) {
     console.error(`Error fetching game details for id: ${id}:`, error);
     return null;
