@@ -129,23 +129,6 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                 </div>
               </div>
             </div>
-
-            <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">下载</h2>
-                <div className="flex flex-col gap-3 max-w-sm mx-auto">
-                    {game.resource && game.resource.length > 0 ? game.resource.map(res => (
-                        <DownloadButton key={res._id} resource={res} />
-                    )) : (
-                        <Alert variant="destructive">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertTitle>无下载链接</AlertTitle>
-                            <AlertDescription>
-                                抱歉，该游戏暂时没有可用的下载链接。
-                            </AlertDescription>
-                        </Alert>
-                    )}
-                </div>
-            </div>
             
             <div className="mt-12">
                 <h2 className="text-2xl font-headline mb-4 text-center">游戏信息</h2>
@@ -181,6 +164,23 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                 </Carousel>
               </div>
             )}
+
+            <div className="mt-12">
+                <h2 className="text-2xl font-headline mb-4">下载</h2>
+                <div className="flex flex-wrap gap-3 justify-end">
+                    {game.resource && game.resource.length > 0 ? game.resource.map(res => (
+                        <DownloadButton key={res._id} resource={res} />
+                    )) : (
+                        <Alert variant="destructive">
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertTitle>无下载链接</AlertTitle>
+                            <AlertDescription>
+                                抱歉，该游戏暂时没有可用的下载链接。
+                            </AlertDescription>
+                        </Alert>
+                    )}
+                </div>
+            </div>
             
             <div className="mt-12">
                 <h2 className="text-2xl font-headline mb-4">关于此游戏</h2>
