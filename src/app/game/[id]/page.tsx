@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -132,16 +133,16 @@ export default async function GameDetailPage({ params }: { params: { id: string 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mt-12">
                 <div>
                     <div className="sticky top-8">
-                        <h2 className="text-2xl font-headline mb-4">Downloads</h2>
+                        <h2 className="text-2xl font-headline mb-4">下载</h2>
                         <div className="flex flex-col gap-3">
                             {game.resource && game.resource.length > 0 ? game.resource.map(res => (
                                 <DownloadButton key={res._id} resource={res} />
                             )) : (
                                 <Alert variant="destructive">
                                     <AlertCircle className="h-4 w-4" />
-                                    <AlertTitle>No Download Links</AlertTitle>
+                                    <AlertTitle>无下载链接</AlertTitle>
                                     <AlertDescription>
-                                        Sorry, there are no download links available for this game at the moment.
+                                        抱歉，该游戏暂时没有可用的下载链接。
                                     </AlertDescription>
                                 </Alert>
                             )}
@@ -149,21 +150,21 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                     </div>
                 </div>
                 <div>
-                    <h2 className="text-2xl font-headline mb-4">Game Information</h2>
+                    <h2 className="text-2xl font-headline mb-4">游戏信息</h2>
                     <div className="grid grid-cols-1 gap-4">
-                        <InfoRow icon={Star} label="Rating" value={`${game.star}/5`} />
-                        <InfoRow icon={Users} label="Downloads" value={game.download_count_show || 'N/A'} />
-                        <InfoRow icon={Package} label="Content Rating" value={game.limit_age || 'Not rated'} />
-                        <InfoRow icon={Calendar} label="Released On" value={game.release_at ? new Date(game.release_at).toLocaleDateString() : 'N/A'} />
-                        <InfoRow icon={GitBranch} label="Last Updated" value={game.latest_at ? new Date(game.latest_at).toLocaleDateString() : 'N/A'} />
-                        <InfoRow icon={FileCode} label="Developer" value={game.developer || 'Unknown'} />
+                        <InfoRow icon={Star} label="评分" value={`${game.star}/5`} />
+                        <InfoRow icon={Users} label="下载量" value={game.download_count_show || 'N/A'} />
+                        <InfoRow icon={Package} label="内容分级" value={game.limit_age || '未分级'} />
+                        <InfoRow icon={Calendar} label="发布日期" value={game.release_at ? new Date(game.release_at).toLocaleDateString() : 'N/A'} />
+                        <InfoRow icon={GitBranch} label="最后更新" value={game.latest_at ? new Date(game.latest_at).toLocaleDateString() : 'N/A'} />
+                        <InfoRow icon={FileCode} label="开发者" value={game.developer || '未知'} />
                     </div>
                 </div>
             </div>
 
             {game.detail_images && game.detail_images.length > 0 && (
               <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">Gallery</h2>
+                <h2 className="text-2xl font-headline mb-4">画廊</h2>
                 <Carousel className="w-full">
                   <CarouselContent>
                     {game.detail_images.map((img, index) => (
@@ -185,13 +186,13 @@ export default async function GameDetailPage({ params }: { params: { id: string 
             )}
             
             <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">About this game</h2>
+                <h2 className="text-2xl font-headline mb-4">关于此游戏</h2>
                 <GameDescription description={cleanDescription} />
             </div>
 
             {game.latest_content && (
                 <div className="mt-12">
-                    <h2 className="text-2xl font-headline mb-4">What's New</h2>
+                    <h2 className="text-2xl font-headline mb-4">最新内容</h2>
                     <Card>
                         <CardContent className="p-6">
                             <p className="whitespace-pre-line text-sm text-muted-foreground">{game.latest_content.replace(/<br>/g, '\n').replace(/<br \/>/g, '\n')}</p>
@@ -205,3 +206,5 @@ export default async function GameDetailPage({ params }: { params: { id: string 
     </main>
   );
 }
+
+    
