@@ -71,7 +71,7 @@ export function GameListItem({ game, rank }: GameListItemProps) {
         </div>
       </Link>
       <Button asChild className="font-bold shrink-0">
-          <a href={game.downloadUrl} target="_blank" onClick={(e) => e.stopPropagation()}>
+          <a href={`/game/${game.id}`} target="_blank" onClick={(e) => e.stopPropagation()}>
               <Download className="mr-2 h-4 w-4" />
               下载
           </a>
