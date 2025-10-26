@@ -128,11 +128,6 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                 </div>
               </div>
             </div>
-             
-            <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">About this game</h2>
-                <GameDescription description={cleanDescription} />
-            </div>
 
             {game.detail_images && game.detail_images.length > 0 && (
               <div className="mt-8">
@@ -187,6 +182,11 @@ export default async function GameDetailPage({ params }: { params: { id: string 
                         <InfoRow icon={FileCode} label="Developer" value={game.developer || 'Unknown'} />
                     </div>
                 </div>
+            </div>
+
+            <div className="mt-12">
+                <h2 className="text-2xl font-headline mb-4">About this game</h2>
+                <GameDescription description={cleanDescription} />
             </div>
 
             {game.latest_content && (
