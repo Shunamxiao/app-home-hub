@@ -12,8 +12,27 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    unoptimized: true,
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.us.apks.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: 'z.wiki',
+      },
+       {
+        protocol: 'https',
+        hostname: 'f.gbcass.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
       {
         protocol: 'https',
         hostname: '**',
