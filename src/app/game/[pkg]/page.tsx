@@ -29,6 +29,10 @@ type GameDetails = {
     release_at: string;
     download_count_show: string;
     star: number;
+    metadata?: {
+        cht?: string;
+        region?: string;
+    };
     resource: {
         _id: string;
         url: string;
@@ -56,7 +60,6 @@ async function getGameDetails(pkg: string): Promise<GameDetails | null> {
     if (result.data && result.data.code === 200 && result.data.app) {
       return {
         ...result.data.app,
-        name: result.data.app.metadata?.cht || result.data.app.name,
         resource: result.data.resources || []
       };
     }
@@ -64,13 +67,6 @@ async function getGameDetails(pkg: string): Promise<GameDetails | null> {
     const errorMessage = result.data?.message || result.message || 'Unknown API error';
     console.error(`API error for game details pkg: ${pkg}`, errorMessage);
     
-    if(result.data && result.data.app) {
-      return {
-        ...result.data.app,
-        name: result.data.app.metadata?.cht || result.data.app.name,
-        resource: result.data.resources || []
-      };
-    }
     return null;
 
   } catch (error) {
@@ -115,7 +111,7 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
         <Card className="overflow-hidden">
           <div className="relative h-48 md:h-64 w-full">
             <Image
-              src={game.header_image || (game.detail_images?.length > 0 ? game.detail_images[0] : '/placeholder.svg')}
+              src={game.header_image || (game.detail_images && game.detail_images.length > 0 ? game.detail_images[0] : '/placeholder.svg')}
               alt={`${game.name} header image`}
               fill
               className="object-cover"
@@ -133,7 +129,10 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
                 className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl border-4 border-background shadow-lg shrink-0"
               />
               <div className="w-full">
-                <h1 className="text-3xl md:text-4xl font-headline tracking-wide">{game.name}</h1>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <h1 className="text-3xl md:text-4xl font-headline tracking-wide">{game.metadata?.cht || game.name}</h1>
+                    {game.metadata?.region && <Badge variant="secondary" className="text-sm shrink-0">{game.metadata.region}</Badge>}
+                </div>
                 <p className="text-lg text-primary font-semibold mt-1">{game.developer}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {(game.tags || []).map(tag => (
