@@ -12,25 +12,24 @@ async function getGamesFromApi(): Promise<Game[]> {
       console.error('Failed to fetch games from API');
       return [];
     }
-    const data = await response.json();
+    const result = await response.json();
     
-    if (!data.list) {
-      return [];
+    if (result && result.list) {
+      return result.list.map((item: any) => ({
+        id: item._id,
+        pkg: item.pkg,
+        name: item.metadata?.cht || item.name,
+        iconUrl: item.icon || '/placeholder.svg',
+        iconHint: item.tags?.slice(0, 2).join(' ') || 'game icon',
+        description: item.summary,
+        tags: item.tags || [],
+        region: item.metadata?.region || '',
+      }));
     }
 
-    // Map the API response to our Game type
-    return data.list.map((item: any) => ({
-      id: item._id,
-      name: item.name,
-      iconUrl: item.icon,
-      iconHint: item.tags.slice(0, 2).join(' ') || 'game icon',
-      description: item.summary,
-      tags: item.tags,
-      downloadUrl: '#', // Placeholder
-      rating: 0, // Placeholder
-      size: 'N/A', // Placeholder
-      downloads: 'N/A' // Placeholder
-    }));
+    console.error('API response for game list is not in the expected format:', result);
+    return [];
+    
   } catch (error) {
     console.error('Error fetching games:', error);
     return [];

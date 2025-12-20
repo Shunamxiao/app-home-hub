@@ -12,7 +12,7 @@ import { SearchResults } from '@/components/search-results';
 async function searchGamesFromApi(query: string): Promise<Game[]> {
   if (!query) return [];
   try {
-    const response = await fetch(`https://api.us.apks.cc/game/search?q=${encodeURIComponent(query)}`, { next: { revalidate: 3600 } });
+    const response = await fetch(`https://api.hk.apks.cc/game/search?q=${encodeURIComponent(query)}`, { next: { revalidate: 3600 } });
     if (!response.ok) {
       console.error('Failed to fetch games from API');
       return [];

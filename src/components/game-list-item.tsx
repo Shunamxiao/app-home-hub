@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -15,6 +16,7 @@ type GameListItemProps = {
 // A simple hash function to get a color index from a string
 const getColorIndexFromString = (str: string) => {
     let hash = 0;
+    if (!str) return 0;
     for (let i = 0; i < str.length; i++) {
       hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
@@ -43,7 +45,7 @@ export function GameListItem({ game, rank }: GameListItemProps) {
 
   return (
     <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
-      <Link href={`/game/${game.id}`} className="flex items-center gap-4 flex-grow min-w-0">
+      <Link href={`/game/${game.pkg}`} className="flex items-center gap-4 flex-grow min-w-0">
         <div className={`text-xl font-bold w-8 text-center shrink-0 ${getRankColor()}`}>{rank}</div>
         <Image
             src={game.iconUrl}
@@ -54,7 +56,10 @@ export function GameListItem({ game, rank }: GameListItemProps) {
             data-ai-hint={game.iconHint}
         />
         <div className="flex-grow min-w-0">
-            <h3 className="text-lg font-bold truncate sm:w-auto w-40">{game.name}</h3>
+            <div className="flex items-center gap-2">
+                <h3 className="text-lg font-bold truncate">{game.name}</h3>
+                {game.region && <Badge variant="secondary" className="text-xs shrink-0">{game.region}</Badge>}
+            </div>
             <p className="text-sm text-muted-foreground mt-1 truncate">
                 {game.description}
             </p>
@@ -71,10 +76,10 @@ export function GameListItem({ game, rank }: GameListItemProps) {
         </div>
       </Link>
       <Button asChild className="font-bold shrink-0">
-          <a href={`/game/${game.id}`} target="_blank" onClick={(e) => e.stopPropagation()}>
+          <Link href={`/game/${game.pkg}`}>
               <Download className="mr-2 h-4 w-4" />
               下载
-          </a>
+          </Link>
       </Button>
     </div>
   );
