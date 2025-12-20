@@ -1,7 +1,10 @@
 
+
 import Link from 'next/link';
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
+import { AlertCircle, Gamepad2, Mail } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import type { Game } from '@/lib/games';
 import { Suspense } from 'react';
 import { SearchResults } from '@/components/search-results';
@@ -15,10 +18,10 @@ async function searchGamesFromApi(query: string): Promise<Game[]> {
       console.error('Failed to fetch games from API');
       return [];
     }
-    const result = await response.json();
+    const data = await response.json();
     
-    if (result && result.list) {
-       return result.list.map((item: any) => ({
+    if (data && data.list) {
+      return data.list.map((item: any) => ({
         id: item._id || '',
         pkg: item.pkg || '',
         name: item.metadata?.cht || item.name || 'Untitled Game',
@@ -29,6 +32,7 @@ async function searchGamesFromApi(query: string): Promise<Game[]> {
         region: item.metadata?.region || '',
       }));
     }
+
     return [];
   } catch (error) {
     console.error('Error fetching games:', error);
