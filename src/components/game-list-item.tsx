@@ -44,7 +44,7 @@ export function GameListItem({ game, rank }: GameListItemProps) {
   }
 
   return (
-    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
+    <div className="flex items-center gap-3 sm:gap-4 p-2 sm:p-3 rounded-lg hover:bg-muted/50 transition-colors duration-200">
       <Link href={`/game/${game.pkg}`} className="flex items-center gap-3 sm:gap-4 flex-grow min-w-0">
         <div className={`text-lg sm:text-xl font-bold w-8 text-center shrink-0 ${getRankColor()}`}>{rank}</div>
         <Image
@@ -57,17 +57,17 @@ export function GameListItem({ game, rank }: GameListItemProps) {
         />
         <div className="flex-grow min-w-0">
             <div className="flex items-center gap-2">
-                <h3 className="text-base sm:text-lg font-bold truncate">{game.name}</h3>
+                <h3 className="text-sm sm:text-base font-bold truncate">{game.name}</h3>
                 {game.region && <Badge variant="secondary" className="text-xs shrink-0">{game.region}</Badge>}
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground mt-1 truncate">
                 {game.description}
             </p>
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="flex flex-wrap gap-1 mt-2">
                 {game.tags.slice(0, 1).map((tag) => {
                 const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
                 return (
-                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} hidden sm:inline-flex`}>
+                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} sm:hidden inline-flex`}>
                     {tag}
                     </Badge>
                 );
@@ -75,7 +75,7 @@ export function GameListItem({ game, rank }: GameListItemProps) {
                 {game.tags.slice(0, 2).map((tag, index) => {
                 const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
                 return (
-                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} sm:hidden ${index > 0 ? 'hidden' : 'inline-flex'}`}>
+                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} hidden sm:inline-flex`}>
                     {tag}
                     </Badge>
                 );
