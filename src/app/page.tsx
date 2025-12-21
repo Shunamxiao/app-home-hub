@@ -42,10 +42,10 @@ export default async function Home() {
   return (
     <main className="container mx-auto px-2 sm:px-4 py-8">
       <header className="flex flex-col items-center justify-center text-center py-8 md:py-12">
-        <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl tracking-wider text-primary drop-shadow-lg">
+        <h1 className="font-headline text-5xl sm:text-7xl md:text-8xl tracking-wider text-primary drop-shadow-lg">
           游戏宇宙中心
         </h1>
-        <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl">
+        <p className="mt-4 text-sm sm:text-lg text-muted-foreground max-w-2xl">
           您的快乐源泉！发现并下载最棒的手机游戏。
         </p>
         <div className="mt-8 w-full max-w-2xl">

@@ -77,10 +77,10 @@ async function getGameDetails(pkg: string): Promise<GameDetails | null> {
 
 const InfoCard = ({ icon: Icon, label, value }: { icon: React.ElementType, label: string, value: React.ReactNode }) => (
     <Card>
-        <CardContent className="p-4 flex flex-col items-center justify-center text-center gap-2">
-            <Icon className="h-8 w-8 text-primary" />
-            <p className="text-sm font-semibold text-muted-foreground">{label}</p>
-            <p className="text-lg font-bold">{value}</p>
+        <CardContent className="p-3 sm:p-4 flex flex-col items-center justify-center text-center gap-1 sm:gap-2">
+            <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+            <p className="text-xs sm:text-sm font-semibold text-muted-foreground">{label}</p>
+            <p className="text-base sm:text-lg font-bold">{value}</p>
         </CardContent>
     </Card>
 );
@@ -99,7 +99,7 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
   return (
     <main className="bg-background">
       <div className="container mx-auto max-w-5xl px-2 sm:px-4 py-8">
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
             <Button asChild variant="outline">
                 <Link href="/" className="flex items-center gap-2">
                     <ArrowLeft className="h-4 w-4" />
@@ -119,22 +119,22 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
           </div>
 
-          <CardContent className="p-4 sm:p-6 -mt-20 relative z-10">
-            <div className="flex flex-col sm:flex-row items-start gap-6">
+          <CardContent className="p-4 sm:p-6 -mt-16 sm:-mt-20 relative z-10">
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
               <Image
                 src={game.icon || '/placeholder.svg'}
                 alt={`${game.name} icon`}
                 width={128}
                 height={128}
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl border-4 border-background shadow-lg shrink-0"
+                className="w-20 h-20 sm:w-32 sm:h-32 rounded-2xl border-4 border-background shadow-lg shrink-0"
               />
               <div className="w-full">
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                    <h1 className="text-3xl md:text-4xl font-headline tracking-wide">{game.metadata?.cht || game.name}</h1>
-                    {game.metadata?.region && <Badge variant="secondary" className="text-sm shrink-0">{game.metadata.region}</Badge>}
+                <div className="flex flex-wrap items-center gap-x-2 sm:gap-x-4 gap-y-2">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-headline tracking-wide">{game.metadata?.cht || game.name}</h1>
+                    {game.metadata?.region && <Badge variant="secondary" className="text-xs sm:text-sm shrink-0">{game.metadata.region}</Badge>}
                 </div>
-                <p className="text-lg text-primary font-semibold mt-1">{game.developer}</p>
-                <div className="flex flex-wrap gap-2 mt-4">
+                <p className="text-base sm:text-lg text-primary font-semibold mt-1">{game.developer}</p>
+                <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
                   {(game.tags || []).map(tag => (
                     <Badge key={tag} variant="secondary">{tag}</Badge>
                   ))}
@@ -142,9 +142,9 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
               </div>
             </div>
             
-            <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">游戏信息</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="mt-8 sm:mt-12">
+                <h2 className="text-xl sm:text-2xl font-headline mb-4">游戏信息</h2>
+                <div className="grid grid-cols-3 gap-2 sm:gap-4">
                     <InfoCard icon={Star} label="评分" value={`${game.star}/5`} />
                     <InfoCard icon={Users} label="下载量" value={game.download_count_show || 'N/A'} />
                     <InfoCard icon={Package} label="内容分级" value={game.limit_age || '未分级'} />
@@ -155,12 +155,12 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
             </div>
 
             {game.detail_images && game.detail_images.length > 0 && (
-              <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">画廊</h2>
+              <div className="mt-8 sm:mt-12">
+                <h2 className="text-xl sm:text-2xl font-headline mb-4">画廊</h2>
                 <Carousel className="w-full">
                   <CarouselContent>
                     {game.detail_images.map((img, index) => (
-                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3">
                         <div className="p-1">
                           <Card className="overflow-hidden">
                             <CardContent className="flex aspect-[16/9] items-center justify-center p-0">
@@ -177,9 +177,9 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
               </div>
             )}
 
-            <div className="mt-12">
+            <div className="mt-8 sm:mt-12">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-headline">下载</h2>
+                <h2 className="text-xl sm:text-2xl font-headline">下载</h2>
                 <FeedbackDialog gameName={game.name} />
               </div>
               <div className="flex flex-wrap gap-3 justify-end">
@@ -196,16 +196,16 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
               </div>
             </div>
             
-            <div className="mt-12">
-                <h2 className="text-2xl font-headline mb-4">关于此游戏</h2>
+            <div className="mt-8 sm:mt-12">
+                <h2 className="text-xl sm:text-2xl font-headline mb-4">关于此游戏</h2>
                 <GameDescription description={cleanDescription} />
             </div>
 
             {game.latest_content && (
-                <div className="mt-12">
-                    <h2 className="text-2xl font-headline mb-4">最新内容</h2>
+                <div className="mt-8 sm:mt-12">
+                    <h2 className="text-xl sm:text-2xl font-headline mb-4">最新内容</h2>
                     <Card>
-                        <CardContent className="p-6">
+                        <CardContent className="p-4 sm:p-6">
                             <p className="whitespace-pre-line text-sm text-muted-foreground">{(game.latest_content || '').replace(/<br>/g, '\n').replace(/<br \/>/g, '\n')}</p>
                         </CardContent>
                     </Card>

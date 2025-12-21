@@ -44,30 +44,38 @@ export function GameListItem({ game, rank }: GameListItemProps) {
   }
 
   return (
-    <div className="flex items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
-      <Link href={`/game/${game.pkg}`} className="flex items-center gap-4 flex-grow min-w-0">
-        <div className={`text-xl font-bold w-8 text-center shrink-0 ${getRankColor()}`}>{rank}</div>
+    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg hover:bg-muted/50 transition-colors duration-200">
+      <Link href={`/game/${game.pkg}`} className="flex items-center gap-3 sm:gap-4 flex-grow min-w-0">
+        <div className={`text-lg sm:text-xl font-bold w-8 text-center shrink-0 ${getRankColor()}`}>{rank}</div>
         <Image
             src={game.iconUrl}
             alt={`${game.name} icon`}
             width={64}
             height={64}
-            className="rounded-xl shrink-0"
+            className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl shrink-0"
             data-ai-hint={game.iconHint}
         />
         <div className="flex-grow min-w-0">
             <div className="flex items-center gap-2">
-                <h3 className="text-lg font-bold truncate">{game.name}</h3>
+                <h3 className="text-base sm:text-lg font-bold truncate">{game.name}</h3>
                 {game.region && <Badge variant="secondary" className="text-xs shrink-0">{game.region}</Badge>}
             </div>
-            <p className="text-sm text-muted-foreground mt-1 truncate">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 truncate">
                 {game.description}
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
-                {game.tags.slice(0, 2).map((tag) => {
+                {game.tags.slice(0, 1).map((tag) => {
                 const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
                 return (
-                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]}`}>
+                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} hidden sm:inline-flex`}>
+                    {tag}
+                    </Badge>
+                );
+                })}
+                {game.tags.slice(0, 2).map((tag, index) => {
+                const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
+                return (
+                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} sm:hidden ${index > 0 ? 'hidden' : 'inline-flex'}`}>
                     {tag}
                     </Badge>
                 );
@@ -75,7 +83,7 @@ export function GameListItem({ game, rank }: GameListItemProps) {
             </div>
         </div>
       </Link>
-      <Button asChild className="font-bold shrink-0">
+      <Button asChild className="font-bold shrink-0 text-xs sm:text-sm h-8 sm:h-10 px-3 sm:px-4">
           <Link href={`/game/${game.pkg}`}>
               <Download className="mr-2 h-4 w-4" />
               下载
