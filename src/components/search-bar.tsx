@@ -33,13 +33,13 @@ export function SearchBar() {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for amazing games..."
+        placeholder="搜索一下发现更多~"
         className="flex-1 text-lg py-6 rounded-full border-2 border-input focus:border-primary transition-colors duration-300"
         aria-label="Search for games"
       />
       <Button type="submit" size="icon" className="rounded-full w-12 h-12 bg-primary hover:bg-primary/90 transition-transform hover:scale-110">
         <Search className="h-6 w-6" />
-        <span className="sr-only">Search</span>
+        <span className="sr-only">搜索</span>
       </Button>
     </form>
   );
