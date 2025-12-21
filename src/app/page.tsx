@@ -24,6 +24,7 @@ async function getGamesFromApi(): Promise<Game[]> {
         description: item.summary,
         tags: item.tags || [],
         region: item.metadata?.region || '',
+        star: item.star || 0,
       }));
     }
 

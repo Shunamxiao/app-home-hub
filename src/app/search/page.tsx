@@ -1,5 +1,4 @@
 
-
 import Link from 'next/link';
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
@@ -30,6 +29,7 @@ async function searchGamesFromApi(query: string): Promise<Game[]> {
         description: item.summary || '',
         tags: item.tags || [],
         region: item.metadata?.region || '',
+        star: item.star || 0,
       }));
     }
 
@@ -71,4 +71,3 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     </main>
   );
 }
-

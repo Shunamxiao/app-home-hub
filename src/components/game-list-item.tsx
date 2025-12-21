@@ -5,33 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Game } from '@/lib/games';
 import { Button } from '@/components/ui/button';
-import { Download } from 'lucide-react';
+import { Download, Star } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 type GameListItemProps = {
   game: Game;
   rank: number;
 };
-
-// A simple hash function to get a color index from a string
-const getColorIndexFromString = (str: string) => {
-    let hash = 0;
-    if (!str) return 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    return Math.abs(hash);
-};
-
-const badgeColors = [
-    'bg-sky-100 text-sky-800 border-sky-300 hover:bg-sky-200',
-    'bg-amber-100 text-amber-800 border-amber-300 hover:bg-amber-200',
-    'bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-200',
-    'bg-violet-100 text-violet-800 border-violet-300 hover:bg-violet-200',
-    'bg-pink-100 text-pink-800 border-pink-300 hover:bg-pink-200',
-    'bg-rose-100 text-rose-800 border-rose-300 hover:bg-rose-200',
-];
-
 
 export function GameListItem({ game, rank }: GameListItemProps) {
   const getRankColor = () => {
@@ -60,33 +40,25 @@ export function GameListItem({ game, rank }: GameListItemProps) {
                 <h3 className="text-sm sm:text-base font-bold truncate">{game.name}</h3>
                 {game.region && <Badge variant="secondary" className="text-xs shrink-0">{game.region}</Badge>}
             </div>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-1 truncate">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground mt-1">
+                {game.star > 0 && (
+                    <div className="flex items-center gap-1 text-amber-500 font-bold">
+                        <Star className="w-3 h-3 sm:w-4 sm:h-4 fill-current" />
+                        <span>{game.star.toFixed(1)}</span>
+                    </div>
+                )}
+                <p className="truncate">
+                    {game.tags.join(' · ')}
+                </p>
+            </div>
+            <p className="text-xs text-muted-foreground/80 mt-1 truncate">
                 {game.description}
             </p>
-            <div className="flex flex-wrap gap-1 mt-2">
-                {game.tags.slice(0, 1).map((tag) => {
-                const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
-                return (
-                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} sm:hidden inline-flex`}>
-                    {tag}
-                    </Badge>
-                );
-                })}
-                {game.tags.slice(0, 2).map((tag, index) => {
-                const colorIndex = getColorIndexFromString(tag) % badgeColors.length;
-                return (
-                    <Badge key={tag} variant="outline" className={`text-xs ${badgeColors[colorIndex]} hidden sm:inline-flex`}>
-                    {tag}
-                    </Badge>
-                );
-                })}
-            </div>
         </div>
       </Link>
-      <Button asChild className="font-bold shrink-0 text-xs sm:text-sm h-8 sm:h-10 px-3 sm:px-4">
+      <Button asChild className="font-bold shrink-0 text-xs sm:text-sm h-10 px-3 sm:px-4 rounded-full">
           <Link href={`/game/${game.pkg}`}>
-              <Download className="mr-2 h-4 w-4" />
-              下载
+              获取
           </Link>
       </Button>
     </div>

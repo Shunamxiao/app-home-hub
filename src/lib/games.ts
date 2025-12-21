@@ -8,4 +8,5 @@ export type Game = {
   description: string;
   tags: string[];
   region: string;
+  star: number;
 };
