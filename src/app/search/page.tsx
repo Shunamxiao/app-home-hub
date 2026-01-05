@@ -17,10 +17,10 @@ async function searchGamesFromApi(query: string): Promise<Game[]> {
       console.error('Failed to fetch games from API');
       return [];
     }
-    const data = await response.json();
+    const result = await response.json();
     
-    if (data && data.list) {
-      return data.list.map((item: any) => ({
+    if (result?.data?.list) {
+      return result.data.list.map((item: any) => ({
         id: item._id || '',
         pkg: item.pkg || '',
         name: item.metadata?.cht || item.name || 'Untitled Game',

@@ -1,3 +1,4 @@
+
 import { GameListItem } from '@/components/game-list-item';
 import { SearchBar } from '@/components/search-bar';
 import type { Game } from '@/lib/games';
@@ -13,12 +14,15 @@ async function getGamesFromApi(): Promise<Game[]> {
       next: { revalidate: 3600 },
     });
 
-    if (!response.ok) return [];
+    if (!response.ok) {
+      console.error('API error for game list. Status:', response.status);
+      return [];
+    }
 
     const result = await response.json();
-
-    if (result?.list) {
-      return result.list.map((item: any) => ({
+    
+    if (result?.data?.list) {
+      return result.data.list.map((item: any) => ({
         id: item._id,
         pkg: item.pkg,
         name: item.metadata?.cht || item.name,
@@ -31,8 +35,11 @@ async function getGamesFromApi(): Promise<Game[]> {
       }));
     }
 
+    console.error('API response for game list is not in the expected format:', result);
     return [];
-  } catch {
+    
+  } catch (error) {
+    console.error('Error fetching games from API:', error);
     return [];
   }
 }

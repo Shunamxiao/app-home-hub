@@ -50,14 +50,14 @@ type GameDetails = {
 async function getGameDetails(pkg: string): Promise<GameDetails | null> {
   try {
     const response = await fetch(`${config.api.gameInfo}?pkg=${pkg}`, { next: { revalidate: 3600 } });
-    if (!response.ok) {
+    const result = await response.json();
+    
+    if (result?.code !== 0) {
       console.error(`API error for game details pkg: ${pkg}. Status: ${response.status}`);
       return null;
     }
     
-    const result = await response.json();
-    
-    if (result.data && result.data.code === 200 && result.data.app) {
+    if (result.data && result.data.app) {
       return {
         ...result.data.app,
         resource: result.data.resources || []
@@ -135,7 +135,7 @@ export default async function GameDetailPage({ params }: { params: { pkg: string
                 </div>
                 <p className="text-base sm:text-lg text-primary font-semibold mt-1">{game.developer}</p>
                 <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
-                  {(game.tags || []).map(tag => (
+                  {(game.tags || []).slice(0, 5).map(tag => (
                     <Badge key={tag} variant="secondary">{tag}</Badge>
                   ))}
                 </div>
